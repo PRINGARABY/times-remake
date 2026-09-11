@@ -1,0 +1,44 @@
+<% content_for :title, "Times Remake — The Living Archive" %>
+<section class="hero" aria-label="The living archive">
+  <h1 class="sr-only">TIMES REMAKE — THE LIVING ARCHIVE</h1>
+  <%= render "shared/interior_image", alt: "Approved concept interior: concrete columns, wooden display tables and rails of archive clothing", loading: "eager", sizes: "(max-width: 767px) 960px, 100vw", image_class: "hero-image" %>
+  <div class="hero-caption"><p>FUMIN ROAD, SHANGHAI</p><%= link_to "VIEW COLLECTION", shop_path, class: "text-link" %></div>
+</section>
+
+<section class="collection-section page-shell" id="new-arrivals" aria-labelledby="new-arrivals-title">
+  <div class="section-heading"><h2 id="new-arrivals-title">NEW ARRIVALS</h2><%= link_to "VIEW ALL", shop_path(sort: "newest"), class: "text-link" %></div>
+  <p class="collection-note">A demonstration collection. All pieces and brands are fictional.</p>
+  <div class="product-grid"><%= render partial: "shared/product_card", collection: @new_arrivals, as: :product %></div>
+  <% if @new_arrivals.empty? %><p class="empty-message">The demonstration archive is being prepared.</p><% end %>
+</section>
+
+<section class="editorial page-shell" id="stories" aria-labelledby="editorial-title">
+  <div class="editorial-photo">
+    <%= render "shared/interior_image", alt: "Detail from the concept interior: worn timber, clothing and collected objects", sizes: "(min-width: 1024px) 64vw, 100vw" %>
+  </div>
+  <div class="editorial-copy">
+    <p class="eyebrow">THE LIVING ARCHIVE</p>
+    <h2 id="editorial-title">A study in<br>time & texture.</h2>
+    <p>Reworked garments, archive pieces and contemporary design, brought together in one collection.</p>
+    <%= link_to "EXPLORE THE ARCHIVE", shop_path(direction: "archive"), class: "text-link" %>
+  </div>
+  <span class="wall-writing writing-same" aria-hidden="true"></span>
+</section>
+
+<section class="collection-section archive-section page-shell" id="archive-selection" aria-labelledby="archive-title">
+  <div class="section-heading"><h2 id="archive-title">ARCHIVE SELECTION</h2><%= link_to "VIEW ARCHIVE", shop_path(direction: "archive"), class: "text-link" %></div>
+  <div class="product-grid"><%= render partial: "shared/product_card", collection: @archive_products, as: :product %></div>
+  <% if @archive_products.empty? %><p class="empty-message">Archive pieces will appear here when the collection is ready.</p><% end %>
+</section>
+
+<section class="store-story page-shell" id="concept" aria-labelledby="concept-title">
+  <div class="story-copy">
+    <p class="eyebrow">FUMIN ROAD, SHANGHAI</p>
+    <h2 id="concept-title">A physical space.<br>A digital study.</h2>
+    <p>This independent student project imagines a digital archive inspired by Times Remake in Shanghai.</p>
+    <p class="story-note">The interior is an approved concept image. The collection is fictional; this project is not affiliated with the store.</p>
+    <%= link_to "DISCOVER THE COLLECTION", shop_path, class: "text-link" %>
+  </div>
+  <div class="story-photo"><%= render "shared/interior_image", alt: "Concept view of the interior, with a concrete column, clothing rails and timber shelving", sizes: "(min-width: 768px) 58vw, 100vw" %></div>
+  <span class="wall-writing writing-repeat" aria-hidden="true"></span>
+</section>

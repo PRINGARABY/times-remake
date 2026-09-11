@@ -1,0 +1,36 @@
+<% content_for :title, "#{@product.name} — Times Remake" %>
+<section class="page-shell product-detail">
+  <nav aria-label="Breadcrumb" class="breadcrumb"><%= link_to "Archive", shop_path %><span aria-hidden="true">/</span><span><%= @product.archive_code %></span></nav>
+  <div class="detail-grid">
+    <div class="detail-gallery"><span class="wall-writing writing-again" aria-hidden="true"></span>
+      <div class="detail-image"><%= product_image(@product, class: "product-image", width: 600, height: 720) %></div>
+      <% @product.images.drop(1).each do |attachment| %><%= image_tag attachment, alt: "#{@product.name} — additional view", class: "additional-image", loading: "lazy", width: attachment.metadata["width"] || 600, height: attachment.metadata["height"] || 720 %><% end %>
+      <p class="eyebrow gallery-caption"><%= @product.images.attached? ? "DEMONSTRATION PIECE" : "PRODUCT PHOTOGRAPH NOT YET AVAILABLE" %></p>
+    </div>
+    <div class="detail-copy">
+      <p class="eyebrow"><%= @product.direction_label %> / <%= @product.archive_code %></p>
+      <h1><%= @product.name %></h1>
+      <p class="detail-brand"><%= @product.brand.name %> · <%= @product.category.name %></p>
+      <p class="detail-price"><%= product_price(@product) %> <span>CNY</span></p>
+      <div class="badges"><span class="badge <%= "badge-sold" if @product.sold? %>"><%= @product.availability_label %></span><% if @product.one_of_one? %><span class="badge">ONE OF ONE</span><% end %></div>
+      <p class="product-description"><%= @product.description %></p>
+      <dl class="product-specs">
+        <div><dt>Size</dt><dd><%= @product.size_label.presence || "Not specified" %></dd></div>
+        <div><dt>Era</dt><dd><%= @product.era.presence || "Not specified" %></dd></div>
+        <div><dt>Condition</dt><dd><%= @product.condition_score ? "#{number_with_precision(@product.condition_score, precision: 1)} / 10" : "Not assessed" %></dd></div>
+        <div><dt>Quantity</dt><dd><%= @product.quantity %></dd></div>
+      </dl>
+      <% if @product.sold? %>
+        <p class="purchase-notice sold-notice">SOLD — MOVED TO ARCHIVE</p>
+      <% else %>
+        <button type="button" class="button purchase-button" disabled aria-describedby="cart-notice"><%= @product.in_stock? ? "NOT AVAILABLE TO PURCHASE YET" : "CURRENTLY UNAVAILABLE" %></button>
+      <% end %>
+      <p id="cart-notice" class="demo-note">Cart will be added in the next development stage</p>
+      <section class="detail-section" aria-labelledby="measurements-title"><h2 id="measurements-title">Measurements</h2>
+        <% if @product.measurements.present? %><dl class="product-specs"><% @product.measurements.each do |name, value| %><div><dt><%= name.humanize %></dt><dd><%= value %></dd></div><% end %></dl><% else %><p>Measurements have not been recorded.</p><% end %>
+      </section>
+      <section class="detail-section" aria-labelledby="condition-title"><h2 id="condition-title">Condition & details</h2><p><%= @product.condition_notes.presence || "No condition notes recorded." %></p></section>
+      <p class="detail-disclaimer">DEMO ONLY — a fictional educational example, not an offer for sale or confirmation of store stock.</p>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,8 @@
+<%= image_tag "times-remake-hero.png",
+  srcset: { "times-remake-hero-640.jpg" => "640w", "times-remake-hero-960.jpg" => "960w", "times-remake-hero-1672.jpg" => "1672w" },
+  sizes: local_assigns.fetch(:sizes, "100vw"),
+  width: 1672, height: 941,
+  class: local_assigns.fetch(:image_class, "interior-image"),
+  alt: alt,
+  loading: local_assigns.fetch(:loading, "lazy"),
+  fetchpriority: local_assigns.fetch(:loading, "lazy") == "eager" ? "high" : "auto" %>

@@ -1,0 +1,9 @@
+<article class="product-card" data-product-slug="<%= product.slug %>" data-catalog-search-target="product" data-search-text="<%= [product.name, product.brand.name, product.category.name, product.direction_label, product.size_label].join(' ') %>">
+  <%= link_to product_path(product), class: "product-image-link", aria: { label: "View #{product.name}" } do %>
+    <%= product_image(product, class: "product-image", loading: "lazy", width: 600, height: 720) %>
+    <div class="image-labels"><% if product.one_of_one? %><span class="one-of-one">ONE OF ONE</span><% end %><% if product.sold? %><span class="sold-stamp">SOLD</span><% end %></div>
+  <% end %>
+  <div class="card-title-row"><h3><%= link_to product.name, product_path(product) %></h3><p class="card-price"><%= product_price(product) %></p></div>
+  <p class="card-description"><%= product.brand.name %> · <%= product.category.name %></p>
+  <div class="card-meta"><span><%= product.direction_label %> / <%= product.size_label.presence || "Size not specified" %></span><span><%= product.availability_label %></span></div>
+</article>

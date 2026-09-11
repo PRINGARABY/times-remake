@@ -1,0 +1,6 @@
+jackets:
+  name: Jackets
+  slug: jackets
+tees:
+  name: T-Shirts
+  slug: t-shirts

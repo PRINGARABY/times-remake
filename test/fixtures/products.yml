@@ -1,0 +1,82 @@
+jacket:
+  name: Demo Reworked Jacket
+  slug: demo-reworked-jacket
+  description: Fictional demonstration jacket, not actual store stock.
+  direction: remake
+  price_cents: 120050
+  currency: CNY
+  size_label: M
+  measurements: { chest: "58 cm", length: "66 cm" }
+  era: Reworked / 2020s
+  condition_score: 8.5
+  condition_notes: Example repaired cuff.
+  quantity: 1
+  status: available
+  featured: true
+  brand: studio
+  category: jackets
+  created_at: 2026-01-01 12:00:00
+
+tee:
+  name: Demo Contemporary Tee
+  slug: demo-contemporary-tee
+  description: Fictional demonstration T-shirt.
+  direction: brand_collection
+  price_cents: 40000
+  currency: CNY
+  size_label: L
+  measurements: {}
+  condition_score: 10.0
+  quantity: 3
+  status: available
+  featured: true
+  brand: archive_house
+  category: tees
+  created_at: 2026-02-01 12:00:00
+
+sold:
+  name: Demo Sold Archive Jacket
+  slug: demo-sold-archive-jacket
+  description: Fictional sold demonstration piece.
+  direction: archive
+  price_cents: 180000
+  currency: CNY
+  size_label: XL
+  measurements: {}
+  condition_score: 6.5
+  quantity: 0
+  status: sold
+  featured: false
+  brand: archive_house
+  category: jackets
+  created_at: 2026-03-01 12:00:00
+
+draft:
+  name: Demo Hidden Draft
+  slug: demo-hidden-draft
+  description: This demonstration piece must not be public.
+  direction: remake
+  price_cents: 10000
+  currency: CNY
+  measurements: {}
+  quantity: 1
+  status: draft
+  featured: true
+  brand: studio
+  category: tees
+  created_at: 2026-04-01 12:00:00
+
+zero_stock:
+  name: Demo Out of Stock Tee
+  slug: demo-out-of-stock-tee
+  description: Demonstration item with no remaining stock.
+  direction: brand_collection
+  price_cents: 30000
+  currency: CNY
+  measurements: {}
+  quantity: 0
+  status: available
+  featured: false
+  brand: studio
+  category: tees
+  created_at: 2026-05-01 12:00:00

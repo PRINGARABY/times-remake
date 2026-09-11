@@ -1,0 +1,28 @@
+<header class="site-header" data-controller="navigation" data-action="keydown.esc->navigation#close click@window->navigation#dismiss turbo:before-cache@document->navigation#reset">
+  <nav class="desktop-navigation" aria-label="Main navigation">
+    <%= link_to "SHOP", shop_path %>
+    <%= link_to "NEW ARRIVALS", root_path(anchor: "new-arrivals") %>
+    <%= link_to "STORIES", root_path(anchor: "stories") %>
+  </nav>
+  <details class="mobile-navigation header-disclosure" data-navigation-target="panel" data-action="toggle->navigation#toggle">
+    <summary aria-label="Menu">MENU</summary>
+    <nav class="header-panel" aria-label="Mobile navigation">
+      <%= link_to "SHOP", shop_path, data: { action: "navigation#reset" } %>
+      <%= link_to "NEW ARRIVALS", root_path(anchor: "new-arrivals"), data: { action: "navigation#reset" } %>
+      <%= link_to "STORIES", root_path(anchor: "stories"), data: { action: "navigation#reset" } %>
+      <%= link_to "SEARCH", shop_path(anchor: "catalog-search"), data: { action: "navigation#reset" } %>
+    </nav>
+  </details>
+  <%= link_to "TIMES REMAKE", root_path, class: "wordmark", aria: { label: "Times Remake home" } %>
+  <nav class="header-actions" aria-label="Shop actions">
+    <%= link_to "SEARCH", shop_path(anchor: "catalog-search"), class: "search-link" %>
+    <details class="header-disclosure cart-disclosure" data-navigation-target="panel" data-action="toggle->navigation#toggle">
+      <summary>CART (0)</summary>
+      <div class="header-panel cart-panel">
+        <p class="eyebrow">Not yet available</p>
+        <p>Cart will be added in the next development stage</p>
+        <%= link_to "EXPLORE THE COLLECTION", shop_path, class: "text-link", data: { action: "navigation#reset" } %>
+      </div>
+    </details>
+  </nav>
+</header>

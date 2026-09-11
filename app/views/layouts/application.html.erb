@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title><%= content_for(:title) || "Times Remake — The Living Archive" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="An unofficial educational concept for a clothing archive inspired by Times Remake, Shanghai. All products are fictional demonstration pieces.">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <%= render "shared/header" %>
+    <main id="main-content" tabindex="-1"><%= yield %></main>
+    <%= render "shared/footer" %>
+  </body>
+</html>
