@@ -3,7 +3,7 @@
 @source "../../helpers";
 
 @theme {
-  --color-mineral: #8c9391;
+  --color-mineral: #b5b9b5;
   --color-ink: #161a18;
   --color-muted: #3e4642;
   --color-wood: #3a2b22;
@@ -15,7 +15,7 @@
   --text: var(--color-ink);
   --text-secondary: #1d221f;
   --line: rgba(22, 26, 24, .25);
-  --surface-grain-opacity: .14;
+  --surface-grain-opacity: .20;
   --wall-writing-opacity: .52;
   --header-height: 64px;
   --page-gutter: 20px;

@@ -1,24 +1,35 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1700" viewBox="0 0 1440 1700" fill="none">
   <defs>
+    <filter id="mineral-clouds" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency=".024 .034" numOctaves="4" seed="31" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncR type="linear" slope="2.4" intercept="-.7"/>
+        <feFuncG type="linear" slope="2.4" intercept="-.7"/>
+        <feFuncB type="linear" slope="2.4" intercept="-.7"/>
+        <feFuncA type="linear" slope=".11"/>
+      </feComponentTransfer>
+    </filter>
     <filter id="soft-edge" x="-25%" y="-25%" width="150%" height="150%"><feGaussianBlur stdDeviation="1.4"/></filter>
     <filter id="worn-edge" x="-20%" y="-20%" width="140%" height="140%">
       <feTurbulence type="fractalNoise" baseFrequency=".06" numOctaves="3" seed="8" result="rough"/>
       <feDisplacementMap in="SourceGraphic" in2="rough" scale="5"/>
       <feGaussianBlur stdDeviation=".45"/>
     </filter>
-    <radialGradient id="hollow"><stop stop-color="#27322d" stop-opacity=".08"/><stop offset=".7" stop-color="#27322d" stop-opacity=".025"/><stop offset="1" stop-color="#27322d" stop-opacity="0"/></radialGradient>
+    <radialGradient id="hollow"><stop stop-color="#27322d" stop-opacity=".12"/><stop offset=".7" stop-color="#27322d" stop-opacity=".04"/><stop offset="1" stop-color="#27322d" stop-opacity="0"/></radialGradient>
   </defs>
+  <path d="M0 0H1440V1700H0Z" filter="url(#mineral-clouds)"/>
   <g filter="url(#soft-edge)">
     <ellipse cx="224" cy="327" rx="105" ry="54" fill="url(#hollow)" transform="rotate(-19 224 327)"/>
     <ellipse cx="1140" cy="865" rx="135" ry="66" fill="url(#hollow)" transform="rotate(23 1140 865)"/>
     <ellipse cx="652" cy="1360" rx="88" ry="40" fill="url(#hollow)" transform="rotate(-8 652 1360)"/>
   </g>
   <g filter="url(#worn-edge)" stroke-linecap="round">
-    <g stroke="#29352f" stroke-opacity=".13" stroke-width="1.3">
+    <g stroke="#29352f" stroke-opacity=".17" stroke-width="1.3">
       <path d="M170 321Q181 295 219 301Q242 297 262 309M1099 855Q1124 835 1153 849L1173 855M613 1357Q632 1340 659 1347"/>
       <path d="M491 708l7-3 9 2M898 241l11-4 8 4M357 1117l5-4 8 2M1263 1430l8-3 6 1M820 1579l9-4 6 3"/>
     </g>
-    <g stroke="#d4dfd7" stroke-opacity=".18" stroke-width="1.2">
+    <g stroke="#edf0e9" stroke-opacity=".30" stroke-width="1.2">
       <path d="M178 340Q210 352 244 333M1113 878Q1143 889 1170 873M626 1375Q653 1383 676 1366"/>
       <path d="M492 711l6 2 9-3M900 248l9 2 7-4M358 1121l5 1 8-2M1265 1434l8 1 5-3M822 1583l7 2 6-4"/>
     </g>
