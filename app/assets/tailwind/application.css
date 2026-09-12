@@ -85,6 +85,15 @@
   .card-meta { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 12px; margin-top: 8px; color: var(--text-secondary); font-size: 9px; letter-spacing: .035em; }
   .editorial { position: relative; display: grid; gap: 32px; padding-block: 20px 90px; overflow: hidden; }
   .editorial-photo { position: relative; overflow: hidden; aspect-ratio: 4 / 3; }
+  /* Feather the editorial photographs into the same grain as the page. */
+  .editorial-photo, .story-photo {
+    --photo-edge: clamp(10px, 1.2vw, 18px);
+    position: relative;
+    isolation: isolate;
+    mask-image: linear-gradient(to right, transparent, #000 var(--photo-edge), #000 calc(100% - var(--photo-edge)), transparent), linear-gradient(to bottom, transparent, #000 var(--photo-edge), #000 calc(100% - var(--photo-edge)), transparent);
+    mask-composite: intersect;
+  }
+  .editorial-photo::after, .story-photo::after { content: ""; position: absolute; inset: 0; background: url("mineral-grain.svg"); opacity: .12; mix-blend-mode: soft-light; pointer-events: none; }
   .interior-image { width: 100%; height: 100%; object-fit: cover; }
   .editorial-photo .interior-image { object-position: 69% 71%; width: 155%; max-width: none; height: 155%; transform: translate(-22%, -28%); }
   .editorial-copy { position: relative; z-index: 1; padding-bottom: 28px; }
