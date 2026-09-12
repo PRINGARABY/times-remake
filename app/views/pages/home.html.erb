@@ -13,9 +13,16 @@
 </section>
 
 <section class="editorial page-shell" id="stories" aria-labelledby="editorial-title">
-  <div class="editorial-photo">
-    <%= render "shared/interior_image", alt: "Detail from the concept interior: worn timber, clothing and collected objects", sizes: "(min-width: 1024px) 64vw, 100vw" %>
-  </div>
+  <figure>
+    <div class="editorial-photo">
+      <%= image_tag "times-remake-fumin-road.jpg",
+        srcset: { "times-remake-fumin-road-640.jpg" => "640w", "times-remake-fumin-road.jpg" => "1279w" },
+        sizes: "(min-width: 768px) 56vw, 100vw", width: 1279, height: 958,
+        class: "interior-image", loading: "lazy",
+        alt: "Times Remake entrance on Fumin Road, with a concrete facade, illuminated sign and clothing displays inside" %>
+    </div>
+    <figcaption class="photo-credit"><%= link_to "FUMIN ROAD · PHOTO: TIMES REMAKE ↗", "https://www.instagram.com/times_remake/p/DbBJ4x6Acdv/", target: "_blank", rel: "noopener noreferrer", aria: { label: "Fumin Road photograph by Times Remake on Instagram (opens in a new tab)" } %></figcaption>
+  </figure>
   <div class="editorial-copy">
     <p class="eyebrow">THE LIVING ARCHIVE</p>
     <h2 id="editorial-title">A study in<br>time & texture.</h2>
@@ -33,12 +40,21 @@
 
 <section class="store-story page-shell" id="concept" aria-labelledby="concept-title">
   <div class="story-copy">
-    <p class="eyebrow">FUMIN ROAD, SHANGHAI</p>
+    <p class="eyebrow">CHANGLE ROAD, SHANGHAI</p>
     <h2 id="concept-title">A physical space.<br>A digital study.</h2>
     <p>This independent student project imagines a digital archive inspired by Times Remake in Shanghai.</p>
-    <p class="story-note">The interior is an approved concept image. The collection is fictional; this project is not affiliated with the store.</p>
+    <p class="story-note">Store photographs are from Times Remake. The collection is fictional; this project is not affiliated with the store.</p>
     <%= link_to "DISCOVER THE COLLECTION", shop_path, class: "text-link" %>
   </div>
-  <div class="story-photo"><%= render "shared/interior_image", alt: "Concept view of the interior, with a concrete column, clothing rails and timber shelving", sizes: "(min-width: 768px) 58vw, 100vw" %></div>
+  <figure>
+    <div class="story-photo">
+      <%= image_tag "times-remake-changle-road.jpg",
+        srcset: { "times-remake-changle-road-640.jpg" => "640w", "times-remake-changle-road.jpg" => "967w" },
+        sizes: "(min-width: 768px) 52vw, 100vw", width: 967, height: 775,
+        class: "interior-image", loading: "lazy",
+        alt: "Times Remake on Changle Road, with two floors of shop windows and a street-level entrance" %>
+    </div>
+    <figcaption class="photo-credit"><%= link_to "CHANGLE ROAD · PHOTO: TIMES REMAKE ↗", "https://www.instagram.com/times_remake/p/Da5eaBHgSbm/", target: "_blank", rel: "noopener noreferrer", aria: { label: "Changle Road photograph by Times Remake on Instagram (opens in a new tab)" } %></figcaption>
+  </figure>
   <span class="wall-writing writing-repeat" aria-hidden="true"></span>
 </section>
