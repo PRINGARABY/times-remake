@@ -1,35 +1,26 @@
 <% content_for :title, "Times Remake — The Living Archive" %>
 <section class="hero" aria-label="The living archive">
   <h1 class="sr-only">TIMES REMAKE — THE LIVING ARCHIVE</h1>
-  <%= render "shared/interior_image", alt: "Approved concept interior: concrete columns, wooden display tables and rails of archive clothing", loading: "eager", sizes: "(max-width: 767px) 960px, 100vw", image_class: "hero-image" %>
-  <div class="hero-caption"><p>FUMIN ROAD, SHANGHAI</p><%= link_to "VIEW COLLECTION", shop_path, class: "text-link" %></div>
+  <%= render "shared/interior_image", alt: "Concept interior with concrete columns, wooden tables and rails of archive clothing", loading: "eager", sizes: "100vw", image_class: "hero-image" %>
+  <div class="hero-caption"><p>REMAKE / ARCHIVE / BRAND COLLECTION</p><%= link_to "VIEW COLLECTION", shop_path, class: "hero-link" %></div>
 </section>
 
 <section class="collection-section page-shell" id="new-arrivals" aria-labelledby="new-arrivals-title">
   <div class="section-heading"><h2 id="new-arrivals-title">NEW ARRIVALS</h2><%= link_to "VIEW ALL", shop_path(sort: "newest"), class: "text-link" %></div>
-  <p class="collection-note">A demonstration collection. All pieces and brands are fictional.</p>
+  <p class="collection-note">Fictional inventory for an educational concept.</p>
   <div class="product-grid"><%= render partial: "shared/product_card", collection: @new_arrivals, as: :product %></div>
   <% if @new_arrivals.empty? %><p class="empty-message">The demonstration archive is being prepared.</p><% end %>
 </section>
 
-<section class="editorial page-shell" id="stories" aria-labelledby="editorial-title">
+<section class="editorial" id="stories" aria-label="Times Remake store photographs">
   <figure>
-    <div class="editorial-photo">
-      <%= image_tag "times-remake-fumin-road.jpg",
-        srcset: { "times-remake-fumin-road-640.jpg" => "640w", "times-remake-fumin-road.jpg" => "1279w" },
-        sizes: "(min-width: 768px) 56vw, 100vw", width: 1279, height: 958,
-        class: "interior-image", loading: "lazy",
-        alt: "Times Remake entrance on Fumin Road, with a concrete facade, illuminated sign and clothing displays inside" %>
-    </div>
-    <figcaption class="photo-credit"><%= link_to "FUMIN ROAD · PHOTO: TIMES REMAKE ↗", "https://www.instagram.com/times_remake/p/DbBJ4x6Acdv/", target: "_blank", rel: "noopener noreferrer", aria: { label: "Fumin Road photograph by Times Remake on Instagram (opens in a new tab)" } %></figcaption>
+    <div class="editorial-photo"><%= image_tag "times-remake-fumin-road.jpg", srcset: { "times-remake-fumin-road-640.jpg" => "640w", "times-remake-fumin-road.jpg" => "1279w" }, sizes: "(min-width: 768px) 50vw, 100vw", width: 1279, height: 958, class: "interior-image", loading: "lazy", alt: "Times Remake entrance on Fumin Road with its amber illuminated sign" %></div>
+    <figcaption class="photo-credit"><span>FUMIN ROAD, SHANGHAI</span><%= link_to "PHOTO: TIMES REMAKE", "https://www.instagram.com/times_remake/p/DbBJ4x6Acdv/", target: "_blank", rel: "noopener noreferrer", aria: { label: "Fumin Road photograph by Times Remake on Instagram (opens in a new tab)" } %></figcaption>
   </figure>
-  <div class="editorial-copy">
-    <p class="eyebrow">THE LIVING ARCHIVE</p>
-    <h2 id="editorial-title">A study in<br>time & texture.</h2>
-    <p>Reworked garments, archive pieces and contemporary design, brought together in one collection.</p>
-    <%= link_to "EXPLORE THE ARCHIVE", shop_path(direction: "archive"), class: "text-link" %>
-  </div>
-  <span class="wall-writing writing-same" aria-hidden="true"></span>
+  <figure>
+    <div class="story-photo"><%= image_tag "times-remake-changle-road.jpg", srcset: { "times-remake-changle-road-640.jpg" => "640w", "times-remake-changle-road.jpg" => "967w" }, sizes: "(min-width: 768px) 50vw, 100vw", width: 967, height: 775, class: "interior-image", loading: "lazy", alt: "Times Remake on Changle Road with illuminated shop windows and people outside" %></div>
+    <figcaption class="photo-credit"><span>CHANGLE ROAD, SHANGHAI</span><%= link_to "PHOTO: TIMES REMAKE", "https://www.instagram.com/times_remake/p/Da5eaBHgSbm/", target: "_blank", rel: "noopener noreferrer", aria: { label: "Changle Road photograph by Times Remake on Instagram (opens in a new tab)" } %></figcaption>
+  </figure>
 </section>
 
 <section class="collection-section archive-section page-shell" id="archive-selection" aria-labelledby="archive-title">
@@ -39,22 +30,6 @@
 </section>
 
 <section class="store-story page-shell" id="concept" aria-labelledby="concept-title">
-  <div class="story-copy">
-    <p class="eyebrow">CHANGLE ROAD, SHANGHAI</p>
-    <h2 id="concept-title">A physical space.<br>A digital study.</h2>
-    <p>This independent student project imagines a digital archive inspired by Times Remake in Shanghai.</p>
-    <p class="story-note">Store photographs are from Times Remake. The collection is fictional; this project is not affiliated with the store.</p>
-    <%= link_to "DISCOVER THE COLLECTION", shop_path, class: "text-link" %>
-  </div>
-  <figure>
-    <div class="story-photo">
-      <%= image_tag "times-remake-changle-road.jpg",
-        srcset: { "times-remake-changle-road-640.jpg" => "640w", "times-remake-changle-road.jpg" => "967w" },
-        sizes: "(min-width: 768px) 52vw, 100vw", width: 967, height: 775,
-        class: "interior-image", loading: "lazy",
-        alt: "Times Remake on Changle Road, with two floors of shop windows and a street-level entrance" %>
-    </div>
-    <figcaption class="photo-credit"><%= link_to "CHANGLE ROAD · PHOTO: TIMES REMAKE ↗", "https://www.instagram.com/times_remake/p/Da5eaBHgSbm/", target: "_blank", rel: "noopener noreferrer", aria: { label: "Changle Road photograph by Times Remake on Instagram (opens in a new tab)" } %></figcaption>
-  </figure>
-  <span class="wall-writing writing-repeat" aria-hidden="true"></span>
+  <div class="story-copy"><h2 id="concept-title">Times Remake, Shanghai.</h2><p>An independent study of remake, archive clothing and contemporary design, inspired by the store.</p><p class="story-note">Store photographs by Times Remake. The collection is fictional; this project is not affiliated with the store.</p></div>
+  <div class="concept-links"><%= link_to "SHOP THE COLLECTION", shop_path, class: "text-link" %><%= link_to "INSTAGRAM", "https://www.instagram.com/times_remake/", target: "_blank", rel: "noopener noreferrer", class: "text-link", aria: { label: "Times Remake on Instagram (opens in a new tab)" } %></div>
 </section>

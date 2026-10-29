@@ -1,28 +1,26 @@
 <header class="site-header" data-controller="navigation" data-action="keydown.esc->navigation#close click@window->navigation#dismiss turbo:before-cache@document->navigation#reset">
+  <%= link_to root_path, class: "wordmark", aria: { label: "Times Remake home" } do %><%= render "shared/wordmark" %><% end %>
   <nav class="desktop-navigation" aria-label="Main navigation">
-    <%= link_to "SHOP", shop_path %>
+    <%= link_to "SHOP", shop_path, aria: { current: current_page?(shop_path) ? "page" : nil } %>
     <%= link_to "NEW ARRIVALS", root_path(anchor: "new-arrivals") %>
+    <%= link_to "ARCHIVE", shop_path(direction: "archive") %>
     <%= link_to "STORIES", root_path(anchor: "stories") %>
   </nav>
   <details class="mobile-navigation header-disclosure" data-navigation-target="panel" data-action="toggle->navigation#toggle">
-    <summary aria-label="Menu">MENU</summary>
+    <summary aria-label="Menu"><span class="menu-lines" aria-hidden="true"></span><span class="menu-label">MENU</span></summary>
     <nav class="header-panel" aria-label="Mobile navigation">
       <%= link_to "SHOP", shop_path, data: { action: "navigation#reset" } %>
       <%= link_to "NEW ARRIVALS", root_path(anchor: "new-arrivals"), data: { action: "navigation#reset" } %>
+      <%= link_to "ARCHIVE", shop_path(direction: "archive"), data: { action: "navigation#reset" } %>
       <%= link_to "STORIES", root_path(anchor: "stories"), data: { action: "navigation#reset" } %>
       <%= link_to "SEARCH", shop_path(anchor: "catalog-search"), data: { action: "navigation#reset" } %>
     </nav>
   </details>
-  <%= link_to "TIMES REMAKE", root_path, class: "wordmark", aria: { label: "Times Remake home" } %>
   <nav class="header-actions" aria-label="Shop actions">
-    <%= link_to "SEARCH", shop_path(anchor: "catalog-search"), class: "search-link" %>
+    <%= link_to shop_path(anchor: "catalog-search"), class: "search-link", aria: { label: "Search the collection" } do %><svg class="header-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg><% end %>
     <details class="header-disclosure cart-disclosure" data-navigation-target="panel" data-action="toggle->navigation#toggle">
-      <summary>CART (0)</summary>
-      <div class="header-panel cart-panel">
-        <p class="eyebrow">Not yet available</p>
-        <p>Cart will be added in the next development stage</p>
-        <%= link_to "EXPLORE THE COLLECTION", shop_path, class: "text-link", data: { action: "navigation#reset" } %>
-      </div>
+      <summary aria-label="Cart, 0 items"><svg class="header-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14l1 14H4L5 7Z"/><path d="M8 8V6a4 4 0 0 1 8 0v2"/></svg><span class="cart-label">CART</span><span>(0)</span></summary>
+      <div class="header-panel cart-panel"><p class="eyebrow">EDUCATIONAL CONCEPT</p><p>Cart will be added in the next development stage</p><%= link_to "EXPLORE THE COLLECTION", shop_path, class: "text-link", data: { action: "navigation#reset" } %></div>
     </details>
   </nav>
 </header>

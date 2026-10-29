@@ -14,7 +14,6 @@ class CatalogTest < ActionDispatch::IntegrationTest
     assert_select ".hero img[src*='times-remake-hero'][loading=eager][fetchpriority=high][srcset]"
     assert_select "#stories"
     assert_select "#concept"
-    assert_select ".wall-writing[aria-hidden=true]", count: 2
   end
 
   test "catalog opens with all published products and a GET form" do
@@ -36,6 +35,17 @@ class CatalogTest < ActionDispatch::IntegrationTest
   test "category filter works" do
     get shop_path, params: { category: categories(:jackets).slug }
     assert_equal [ products(:sold).slug, products(:jacket).slug ], product_slugs
+  end
+
+  test "products share a neutral placeholder and direction links retain filters" do
+    get shop_path, params: { category: "jackets", available: "1", sort: "price_asc" }
+    placeholder_src = css_select("article[data-product-slug] img").first["src"]
+    assert_select "article[data-product-slug=?] img[alt=?]", products(:jacket).slug, "Product image not yet available"
+    assert_select ".collection-tabs a[href=?]", shop_path(category: "jackets", available: "1", sort: "price_asc", direction: "remake")
+    assert_select "details.filter-disclosure[data-filters-active-value=true]"
+
+    get product_path(products(:tee))
+    assert_select "img[src=?][alt=?]", placeholder_src, "Product image not yet available"
   end
 
   test "direction filter works" do

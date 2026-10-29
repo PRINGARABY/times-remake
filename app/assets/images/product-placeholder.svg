@@ -1,17 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="600" height="720" viewBox="0 0 600 720" fill="none">
-  <defs>
-    <filter id="fabric" x="-5%" y="-5%" width="110%" height="110%">
-      <feTurbulence type="fractalNoise" baseFrequency=".48" numOctaves="3" seed="7" result="noise"/>
-      <feColorMatrix in="noise" type="saturate" values="0"/>
-      <feComposite in2="SourceAlpha" operator="in" result="grain"/>
-      <feComposite in="SourceGraphic" in2="grain" operator="arithmetic" k2=".94" k3=".06"/>
-    </filter>
-    <filter id="shadow"><feGaussianBlur stdDeviation="8"/></filter>
-  </defs>
-  <ellipse cx="300" cy="582" rx="102" ry="7" fill="#1a1917" opacity=".07" filter="url(#shadow)"/>
-  <path d="M238 136L159 172L82 294L150 344L191 280L195 559Q300 575 405 559L409 280L450 344L518 294L441 172L362 136Q345 177 300 178Q255 177 238 136Z" fill="#aaa69e" stroke="#817d75" stroke-width="1.5" opacity=".8" filter="url(#fabric)"/>
-  <g stroke="#7e7a72" stroke-width="1.5" opacity=".55">
-    <path d="M238 136Q249 196 300 198Q351 196 362 136M194 546Q300 561 406 546M96 275L161 324M504 275L439 324M164 174Q185 217 191 280M436 174Q415 217 409 280"/>
-    <path d="M229 243Q214 310 226 415M371 243Q386 340 375 470M253 461L246 553M350 497L356 553" opacity=".4"/>
-  </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="900" viewBox="0 0 600 900" fill="none"><path d="M0 0H600V900H0Z" fill="#e6e7e1"/><g stroke="#858a7e" stroke-width="1.25" opacity=".36"><rect x="287" y="439" width="26" height="22"/><circle cx="305" cy="446" r="2.5"/><path d="m288 457 8-8 8 8 4-4 4 4"/></g></svg>

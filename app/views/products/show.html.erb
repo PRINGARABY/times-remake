@@ -2,14 +2,14 @@
 <section class="page-shell product-detail">
   <nav aria-label="Breadcrumb" class="breadcrumb"><%= link_to "Archive", shop_path %><span aria-hidden="true">/</span><span><%= @product.archive_code %></span></nav>
   <div class="detail-grid">
-    <div class="detail-gallery"><span class="wall-writing writing-again" aria-hidden="true"></span>
-      <div class="detail-image"><%= product_image(@product, class: "product-image", width: 600, height: 720) %></div>
-      <% @product.images.drop(1).each do |attachment| %><%= image_tag attachment, alt: "#{@product.name} — additional view", class: "additional-image", loading: "lazy", width: attachment.metadata["width"] || 600, height: attachment.metadata["height"] || 720 %><% end %>
-      <p class="eyebrow gallery-caption"><%= @product.images.attached? ? "DEMONSTRATION PIECE" : "PRODUCT PHOTOGRAPH NOT YET AVAILABLE" %></p>
+    <div class="detail-gallery">
+      <div class="detail-image"><%= product_image(@product, class: "product-image", width: 600, height: 900) %></div>
+      <% @product.images.drop(1).each do |attachment| %><%= image_tag attachment, alt: "#{@product.name} — additional view", class: "additional-image", loading: "lazy", width: attachment.metadata["width"] || 600, height: attachment.metadata["height"] || 800 %><% end %>
+      <p class="eyebrow gallery-caption"><%= @product.images.attached? ? "DEMONSTRATION PIECE" : "PRODUCT IMAGE NOT YET AVAILABLE" %></p>
     </div>
     <div class="detail-copy">
       <p class="eyebrow"><%= @product.direction_label %> / <%= @product.archive_code %></p>
-      <h1><%= @product.name %></h1>
+      <h1><%= product_display_name(@product) %></h1>
       <p class="detail-brand"><%= @product.brand.name %> · <%= @product.category.name %></p>
       <p class="detail-price"><%= product_price(@product) %> <span>CNY</span></p>
       <div class="badges"><span class="badge <%= "badge-sold" if @product.sold? %>"><%= @product.availability_label %></span><% if @product.one_of_one? %><span class="badge">ONE OF ONE</span><% end %></div>

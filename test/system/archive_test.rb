@@ -4,6 +4,7 @@ class ArchiveTest < ApplicationSystemTestCase
   test "visitor enters the archive filters it and opens a piece" do
     visit root_path
     click_on "VIEW COLLECTION"
+    find(".filter-disclosure summary").click
     select "Demo Studio", from: "Brand"
     select "Jackets", from: "Category"
     select "Remake", from: "Direction"
@@ -25,6 +26,7 @@ class ArchiveTest < ApplicationSystemTestCase
 
   test "empty filter results can be cleared" do
     visit shop_path
+    find(".filter-disclosure summary").click
     select "Demo Studio", from: "Brand"
     select "Archive", from: "Direction"
     click_on "Apply filters"
@@ -63,6 +65,36 @@ class ArchiveTest < ApplicationSystemTestCase
     assert_text "Cart will be added in the next development stage"
     page.send_keys(:escape)
     assert_no_selector ".cart-disclosure[open]"
+  ensure
+    clear_viewport
+  end
+
+  test "mobile filters start compact and reopen with the selected filters" do
+    set_viewport(390, 844)
+    visit shop_path
+    assert_no_selector ".filter-disclosure[open]"
+    assert_operator find(".product-card", match: :first).evaluate_script("this.getBoundingClientRect().top"), :<, 844
+    find(".filter-disclosure summary").send_keys(:enter)
+    assert_selector ".filter-disclosure[open]"
+    select "Jackets", from: "Category"
+    click_on "Apply filters"
+    assert_selector ".filter-disclosure[open]"
+    assert_selector "article[data-product-slug]", count: 2
+    assert_selector "select[name=category] option[selected]", text: "Jackets"
+    within(".collection-tabs") { find("a[href*='direction=remake']").click }
+    assert_selector "article[data-product-slug]", count: 1
+    assert_selector ".collection-tabs a[aria-current=page]", text: "REMAKE"
+  ensure
+    clear_viewport
+  end
+
+  test "small phones retain two product columns and do not overflow" do
+    set_viewport(360, 800)
+    [ root_path, shop_path ].each do |path|
+      visit path
+      assert_equal 2, page.evaluate_script("getComputedStyle(document.querySelector('.product-grid')).gridTemplateColumns.split(' ').length")
+      assert page.evaluate_script("document.documentElement.scrollWidth <= window.innerWidth")
+    end
   ensure
     clear_viewport
   end
@@ -113,5 +145,6 @@ class ArchiveTest < ApplicationSystemTestCase
 
   def clear_viewport
     page.driver.browser.execute_cdp("Emulation.clearDeviceMetricsOverride")
+    page.current_window.resize_to(1440, 1000)
   end
 end

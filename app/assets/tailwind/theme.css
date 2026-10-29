@@ -1,0 +1,26 @@
+/* TIMES REMAKE — shared art direction and editable design settings. */
+@theme {
+  --color-mineral: #d8d8d1;
+  --color-ink: #181b17;
+  --color-muted: #4a4d45;
+  --color-wood: #20221d;
+  --color-amber: #9b5b28;
+  --font-sans: "Inter", Arial, Helvetica, sans-serif;
+  --font-display: "Inter", Arial, Helvetica, sans-serif;
+  --font-wordmark: "Times Wordmark", "Arial Narrow", sans-serif;
+}
+
+:root {
+  --surface: var(--color-mineral);
+  --text: var(--color-ink);
+  --text-secondary: var(--color-muted);
+  --accent: var(--color-amber);
+  --line: rgba(24, 27, 23, .22);
+  --surface-texture-opacity: .26;
+  --header-height: 74px;
+  --page-gutter: 18px;
+  --section-space: 66px;
+  --product-gap: 10px;
+  --product-ratio: 2 / 3;
+  --hero-height: 60svh;
+}

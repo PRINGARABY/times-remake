@@ -1,28 +1,27 @@
-<% content_for :title, "The Archive — Times Remake" %>
+<% content_for :title, "The Collection — Times Remake" %>
 <section class="page-shell catalog" data-controller="catalog-search" aria-labelledby="catalog-title">
-  <div class="section-heading"><p class="eyebrow">THE LIVING ARCHIVE / CATALOG</p><h1 id="catalog-title">The collection</h1><p class="intro-copy">Past lives, present possibilities. Explore the demonstration collection.</p></div>
-  <%= form_with url: shop_path, method: :get, class: "filter-form", data: { turbo: false } do |form| %>
-    <div class="filter-fields">
-      <div><%= form.label :brand, "Brand" %><%= form.select :brand, options_from_collection_for_select(@brands, :slug, :name, @filters["brand"]), include_blank: "All brands" %></div>
-      <div><%= form.label :category, "Category" %><%= form.select :category, options_from_collection_for_select(@categories, :slug, :name, @filters["category"]), include_blank: "All categories" %></div>
-      <div><%= form.label :direction, "Direction" %><%= form.select :direction, options_for_select(Product::DIRECTIONS.map { |value, label| [label, value] }, @filters["direction"]), include_blank: "All directions" %></div>
-      <div><%= form.label :sort, "Sort by" %><%= form.select :sort, options_for_select(Product::SORT_OPTIONS.map { |value, label| [label, value] }, @filters["sort"].presence || "newest") %></div>
-    </div>
-    <div class="filter-actions"><label class="checkbox-label"><%= check_box_tag :available, "1", @filters["available"] == "1" %> Available only</label><div class="flex flex-wrap items-center gap-5"><%= link_to "Reset filters", shop_path, class: "reset-link" %><%= form.submit "Apply filters", class: "button button-dark" %></div></div>
-  <% end %>
-  <div class="catalog-toolbar">
-    <div class="catalog-search" id="catalog-search">
-      <label for="piece-search">SEARCH THESE PIECES</label>
-      <input type="search" id="piece-search" placeholder="Name, brand, category or size" autocomplete="off" data-catalog-search-target="input" data-action="input->catalog-search#filter" aria-controls="catalog-products" aria-describedby="catalog-result-count">
-      <noscript><p>Search requires JavaScript. You can still use the filters above.</p></noscript>
-    </div>
+  <div class="catalog-top"><h1 id="catalog-title">The collection</h1>
+  <nav class="collection-tabs" aria-label="Collection directions">
+    <%= link_to "ALL PIECES", shop_path, aria: { current: @filters["direction"].blank? ? "page" : nil } %>
+    <% Product::DIRECTIONS.each do |value, label| %><%= link_to label, shop_path(@filters.merge("direction" => value)), aria: { current: @filters["direction"] == value ? "page" : nil } %><% end %>
+  </nav></div>
+  <div class="catalog-controls">
+    <div class="catalog-search" id="catalog-search"><label for="piece-search" class="sr-only">SEARCH THESE PIECES</label><input type="search" id="piece-search" placeholder="Name, brand, category or size" autocomplete="off" data-catalog-search-target="input" data-action="input->catalog-search#filter" aria-controls="catalog-products" aria-describedby="catalog-result-count"><noscript><p>Search requires JavaScript. You can still use the filters below.</p></noscript></div>
     <p class="catalog-count" id="catalog-result-count" role="status" data-catalog-search-target="count"><%= pluralize(@products.size, "piece") %></p>
   </div>
+  <details class="filter-disclosure" open data-controller="filters" data-filters-active-value="<%= @filters.except("sort").values.any?(&:present?) %>">
+    <summary><span>FILTERS & SORT</span><span class="filter-toggle" aria-hidden="true">+</span></summary>
+    <%= form_with url: shop_path, method: :get, class: "filter-form", data: { turbo: false } do |form| %>
+      <div class="filter-fields">
+        <div><%= form.label :brand, "Brand" %><%= form.select :brand, options_from_collection_for_select(@brands, :slug, :name, @filters["brand"]), include_blank: "All brands" %></div>
+        <div><%= form.label :category, "Category" %><%= form.select :category, options_from_collection_for_select(@categories, :slug, :name, @filters["category"]), include_blank: "All categories" %></div>
+        <div><%= form.label :direction, "Direction" %><%= form.select :direction, options_for_select(Product::DIRECTIONS.map { |value, label| [label, value] }, @filters["direction"]), include_blank: "All directions" %></div>
+        <div><%= form.label :sort, "Sort by" %><%= form.select :sort, options_for_select(Product::SORT_OPTIONS.map { |value, label| [label, value] }, @filters["sort"].presence || "newest") %></div>
+      </div>
+      <div class="filter-actions"><label class="checkbox-label"><%= check_box_tag :available, "1", @filters["available"] == "1" %> Available only</label><div class="filter-buttons"><%= link_to "Reset filters", shop_path, class: "reset-link" %><%= form.submit "Apply filters", class: "button button-dark" %></div></div>
+    <% end %>
+  </details>
   <div class="search-empty" data-catalog-search-target="empty" hidden><p>No pieces match your search.</p><button type="button" class="text-link" data-action="catalog-search#clear">Clear search</button></div>
-  <p class="demo-note">All pieces and brands are fictional examples. They do not represent actual store inventory.</p>
-  <% if @products.any? %>
-    <div class="product-grid" id="catalog-products"><%= render partial: "shared/product_card", collection: @products, as: :product %></div>
-  <% else %>
-    <div class="empty-state"><p class="eyebrow">NO MATCHES</p><h2>No pieces found.</h2><p>Try another combination or clear the filters to explore the full archive.</p><%= link_to "Clear filters", shop_path, class: "button button-dark" %></div>
-  <% end %>
+  <p class="demo-note catalog-demo-note">Fictional educational inventory.</p>
+  <% if @products.any? %><div class="product-grid" id="catalog-products"><%= render partial: "shared/product_card", collection: @products, as: :product %></div><% else %><div class="empty-state"><p class="eyebrow">NO MATCHES</p><h2>No pieces found.</h2><p>Try another combination or clear the filters to explore the full archive.</p><%= link_to "Clear filters", shop_path, class: "button button-dark" %></div><% end %>
 </section>
